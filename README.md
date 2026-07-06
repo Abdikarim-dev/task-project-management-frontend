@@ -2,6 +2,9 @@
 
 Laravel 12 Blade frontend for the Task & Project Management System. Consumes the REST API in the `server` folder.
 
+> **UI screenshots** are stored in [`docs/screenshots/`](docs/screenshots/).  
+> For a full per-screen breakdown see [`docs/SCREENSHOTS.md`](docs/SCREENSHOTS.md).
+
 ## Stack
 
 - Laravel 12
@@ -51,8 +54,8 @@ composer dev
 
 | Role  | Email               | Password |
 |-------|---------------------|----------|
-| Admin | admin@example.com   | password |
-| Staff | sarah@example.com   | password |
+| Admin | admin@example.com (Hassan Abdi) | password |
+| Staff | amina@example.com (Amina Mohamed) | password |
 
 ## Architecture
 
@@ -66,3 +69,32 @@ The frontend acts as a **session-based BFF** (Backend for Frontend):
 ```
 Browser → Web Routes → Controllers → ApiClient → Backend API
 ```
+
+## UI Screenshots
+
+The app ships with **15 reference screenshots** under [`docs/screenshots/`](docs/screenshots/). Full per-screen documentation (routes, roles, layout, sample data, interactions) is in [`docs/SCREENSHOTS.md`](docs/SCREENSHOTS.md).
+
+### Quick reference
+
+| Area | Screenshots | Who can access |
+|------|-------------|----------------|
+| [Dashboard](docs/SCREENSHOTS.md#dashboard) | Admin light/dark, Staff | All users |
+| [Projects](docs/SCREENSHOTS.md#projects-admin-only) | List, Create, View | Admin |
+| [Tasks](docs/SCREENSHOTS.md#tasks) | List, Create, Edit, View | Admin (all tasks) · Staff (My Tasks) |
+| [Users](docs/SCREENSHOTS.md#users-admin-only) | Grid, Individual profile | Admin |
+| [Profile](docs/SCREENSHOTS.md#profile-signed-in-user) | — (live page only) | All users |
+
+### Highlights visible in screenshots
+
+- **Somali-themed demo data** — Mogadishu Port, Salaam Somali Bank, Dahabshiil, Berbera Corridor, Zoobe Shop, etc.
+- **Role-based navigation** — admins see Projects/Tasks/Users; staff see My Tasks only
+- **Light & dark themes** — user preference (sun/moon toggle in top bar), not system theme
+- **Project team → task assignees** — create-project team checkboxes restrict who appears in task assignee dropdowns
+- **Conditional project delete** — only projects with zero tasks (e.g. Zoobe Shop)
+- **User management** — create users, suspend staff, view per-user stats/charts/projects table
+
+### Sample screens
+
+| Dashboard (admin, light) | My Tasks (staff, dark) | User profile (admin view) |
+|--------------------------|------------------------|---------------------------|
+| ![Dashboard](docs/screenshots/dashboard/admin/dashboard-light-mode.png) | ![My Tasks](docs/screenshots/tasks/staff/view-tasks.png) | ![User profile](docs/screenshots/users/each-user-data-preview-admin.png) |
