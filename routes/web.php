@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/login');
@@ -13,7 +16,14 @@ Route::middleware('guest')->group(function (): void {
 Route::middleware('auth.session')->group(function (): void {
     Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
 
-    Route::get('/dashboard', function () {
-        return view('dashboard.index');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    Route::get('/tasks/{task}', [TaskController::class, 'show'])->name('tasks.show');
+    Route::patch('/tasks/{task}/status', [TaskController::class, 'updateStatus'])->name('tasks.update-status');
+    Route::get('/my-tasks', [TaskController::class, 'myTasks'])->name('tasks.my');
+
+    Route::middleware('admin')->group(function (): void {
+        Route::resource('projects', ProjectController::class);
+        Route::resource('tasks', TaskController::class)->except(['show']);
+    });
 });

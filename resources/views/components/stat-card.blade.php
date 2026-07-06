@@ -4,7 +4,6 @@
     'subtitle' => null,
     'trend' => null,
     'trendUp' => true,
-    'icon' => null,
     'color' => 'blue',
 ])
 
@@ -33,10 +32,10 @@
             @endif
         </div>
 
-        @if ($icon)
+        @isset($icon)
             <div class="flex h-12 w-12 items-center justify-center rounded-xl {{ $iconColors[$color] ?? $iconColors['blue'] }}">
-                {!! $icon !!}
+                {{ $icon }}
             </div>
-        @endif
+        @endisset
     </div>
 </div>
