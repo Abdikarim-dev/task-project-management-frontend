@@ -265,17 +265,6 @@ Read-only task details. Staff may **Update Status** only — no Edit or Delete b
 
 **Filters** — search (*Search users…*), role dropdown (All roles), Filter.
 
-**User cards (grid)**
-
-| User | Role | Email | Actions |
-|------|------|-------|---------|
-| Hassan Abdi | Admin (badge) | admin@example.com | View Profile only |
-| Amina Mohamed | Staff | amina@example.com | View Profile · Suspend |
-| Ibrahim Hashi | Staff | ibrahim@example.com | View Profile · Suspend |
-| Khadija Osman | Staff | khadija@example.com | View Profile · Suspend |
-
-Each card shows avatar initials, *Member since Jul 6, 2026*. Admin accounts cannot be suspended from the UI.
-
 ---
 
 ### Individual user profile
