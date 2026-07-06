@@ -1,5 +1,7 @@
 @import 'tailwindcss';
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
@@ -11,9 +13,37 @@
 
     --color-brand-50: #eff6ff;
     --color-brand-100: #dbeafe;
+    --color-brand-400: #60a5fa;
     --color-brand-500: #3b82f6;
     --color-brand-600: #2563eb;
     --color-brand-700: #1d4ed8;
+    --color-brand-950: #172554;
+}
+
+:root {
+    --canvas: #f3f4f6;
+    --surface: #ffffff;
+    --surface-raised: #ffffff;
+    --surface-input: #ffffff;
+    --surface-hover: #f9fafb;
+    --border: #e5e7eb;
+    --border-subtle: #f3f4f6;
+    --text-primary: #111827;
+    --text-secondary: #6b7280;
+    --text-muted: #9ca3af;
+}
+
+html.dark {
+    --canvas: #0b0e14;
+    --surface: #111827;
+    --surface-raised: #1a2234;
+    --surface-input: #1f2937;
+    --surface-hover: #1f2937;
+    --border: #1f2937;
+    --border-subtle: #1a2332;
+    --text-primary: #f9fafb;
+    --text-secondary: #9ca3af;
+    --text-muted: #6b7280;
 }
 
 @layer base {
@@ -22,13 +52,58 @@
     }
 
     body {
-        @apply bg-gray-50 text-gray-900;
+        background-color: var(--canvas);
+        color: var(--text-primary);
     }
 }
 
 @layer utilities {
+    .bg-canvas {
+        background-color: var(--canvas);
+    }
+
+    .bg-surface {
+        background-color: var(--surface);
+    }
+
+    .bg-surface-raised {
+        background-color: var(--surface-raised);
+    }
+
+    .bg-surface-input {
+        background-color: var(--surface-input);
+    }
+
+    .bg-surface-hover {
+        background-color: var(--surface-hover);
+    }
+
+    .border-app {
+        border-color: var(--border);
+    }
+
+    .border-app-subtle {
+        border-color: var(--border-subtle);
+    }
+
+    .text-app-primary {
+        color: var(--text-primary);
+    }
+
+    .text-app-secondary {
+        color: var(--text-secondary);
+    }
+
+    .text-app-muted {
+        color: var(--text-muted);
+    }
+
     .scrollbar-thin {
         scrollbar-width: thin;
         scrollbar-color: theme(colors.gray.300) transparent;
+    }
+
+    .dark .scrollbar-thin {
+        scrollbar-color: #374151 transparent;
     }
 }

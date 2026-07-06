@@ -5,10 +5,10 @@
 
 @php
     $styles = [
-        'success' => 'bg-green-50 text-green-800 border-green-200',
-        'error' => 'bg-red-50 text-red-800 border-red-200',
-        'warning' => 'bg-yellow-50 text-yellow-800 border-yellow-200',
-        'info' => 'bg-blue-50 text-blue-800 border-blue-200',
+        'success' => 'bg-green-500/10 text-green-700 border-green-500/30 dark:text-green-400',
+        'error' => 'bg-red-500/10 text-red-700 border-red-500/30 dark:text-red-400',
+        'warning' => 'bg-yellow-500/10 text-yellow-800 border-yellow-500/30 dark:text-yellow-300',
+        'info' => 'bg-brand-500/10 text-brand-700 border-brand-500/30 dark:text-brand-400',
     ];
 
     $icons = [
@@ -37,7 +37,7 @@
     </div>
 
     @if ($dismissible)
-        <button type="button" x-on:click="show = false" class="shrink-0 rounded-md p-1 hover:bg-black/5 transition-colors" aria-label="Dismiss">
+        <button type="button" x-on:click="show = false" class="shrink-0 rounded-md p-1 hover:bg-black/5 dark:hover:bg-white/10 transition-colors" aria-label="Dismiss">
             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
             </svg>

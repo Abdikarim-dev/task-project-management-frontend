@@ -1,17 +1,17 @@
 <div class="flex h-full flex-col">
     {{-- Logo --}}
-    <div class="flex h-16 items-center gap-2.5 border-b border-gray-100 px-6">
+    <div class="flex h-16 items-center gap-2.5 border-b border-app-subtle px-6">
         <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-600">
             <svg class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
             </svg>
         </div>
-        <span class="text-xl font-bold text-gray-900">Taskify</span>
+        <span class="text-xl font-bold text-app-primary">Taskify</span>
     </div>
 
     {{-- Navigation --}}
     <nav class="flex-1 space-y-1 overflow-y-auto px-3 py-4 scrollbar-thin" aria-label="Main navigation">
-        <p class="mb-2 px-3 text-xs font-semibold uppercase tracking-wider text-gray-400">Main Navigation</p>
+        <p class="mb-2 px-3 text-xs font-semibold uppercase tracking-wider text-app-muted">Main Navigation</p>
 
         <x-layout.nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
             <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
@@ -49,26 +49,34 @@
                 My Tasks
             </x-layout.nav-link>
         @endif
+
+        <x-layout.nav-link href="{{ route('profile.edit') }}" :active="request()->routeIs('profile.*')">
+            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+            </svg>
+            Profile
+        </x-layout.nav-link>
     </nav>
 
     {{-- User profile --}}
     @if ($currentUser)
-        <div class="border-t border-gray-100 p-4">
-            <div class="flex items-center gap-3">
+        <div class="border-t border-app p-4">
+            <a href="{{ route('profile.edit') }}" class="flex items-center gap-3 rounded-lg p-1 transition-colors hover:bg-surface-hover">
                 <x-avatar :name="$currentUser['name']" size="sm" />
                 <div class="min-w-0 flex-1">
-                    <p class="truncate text-sm font-medium text-gray-900">{{ $currentUser['name'] }}</p>
-                    <p class="truncate text-xs text-gray-500">{{ $currentUser['email'] }}</p>
+                    <p class="truncate text-sm font-medium text-app-primary">{{ $currentUser['name'] }}</p>
+                    <p class="truncate text-xs text-app-secondary">{{ $currentUser['email'] }}</p>
                 </div>
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button type="submit" class="rounded-lg p-1.5 text-gray-400 hover:bg-gray-100 hover:text-gray-600 transition-colors" aria-label="Sign out">
-                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
-                        </svg>
-                    </button>
-                </form>
-            </div>
+            </a>
+            <form method="POST" action="{{ route('logout') }}" class="mt-2">
+                @csrf
+                <button type="submit" class="flex w-full items-center justify-center gap-2 rounded-lg px-3 py-2 text-sm text-app-secondary transition-colors hover:bg-surface-hover hover:text-app-primary">
+                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
+                    </svg>
+                    Sign out
+                </button>
+            </form>
         </div>
     @endif
 </div>

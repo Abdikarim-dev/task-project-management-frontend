@@ -49,9 +49,9 @@
 
         <div class="grid gap-4 md:hidden">
             @foreach ($tasks as $task)
-                <a href="{{ route('tasks.show', $task['id']) }}" class="block rounded-xl border border-gray-200 bg-white p-4 shadow-sm hover:border-brand-200 transition-colors">
-                    <p class="font-semibold text-gray-900">{{ $task['title'] }}</p>
-                    <p class="text-sm text-gray-500">{{ $task['project']['name'] ?? '' }}</p>
+                <a href="{{ route('tasks.show', $task['id']) }}" class="block rounded-xl border border-app bg-surface p-4 shadow-sm transition-colors hover:border-brand-500/50">
+                    <p class="font-semibold text-app-primary">{{ $task['title'] }}</p>
+                    <p class="text-sm text-app-secondary">{{ $task['project']['name'] ?? '' }}</p>
                     <div class="mt-2 flex gap-2">
                         <x-priority-badge :priority="$task['priority']" />
                         <x-status-badge :status="$task['status']" />

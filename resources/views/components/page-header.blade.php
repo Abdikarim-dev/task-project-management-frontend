@@ -12,9 +12,9 @@
 
     <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-            <h1 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">{{ $title }}</h1>
+            <h1 class="text-2xl font-bold tracking-tight text-app-primary sm:text-3xl">{{ $title }}</h1>
             @if ($description)
-                <p class="mt-1 text-sm text-gray-500">{{ $description }}</p>
+                <p class="mt-1 text-sm text-app-secondary">{{ $description }}</p>
             @endif
         </div>
 
@@ -26,7 +26,7 @@
     </div>
 
     @if (isset($tabs))
-        <div class="mt-6 border-b border-gray-200">
+        <div class="mt-6 border-b border-app">
             {{ $tabs }}
         </div>
     @endif

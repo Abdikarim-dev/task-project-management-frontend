@@ -39,6 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         usePointStyle: true,
                         pointStyle: 'circle',
                         font: { size: 12 },
+                        color: getComputedStyle(document.documentElement).getPropertyValue('--text-secondary').trim() || '#9ca3af',
                     },
                 },
             },

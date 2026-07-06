@@ -8,10 +8,10 @@
 @php
     $variants = [
         'primary' => 'bg-brand-600 text-white hover:bg-brand-700 focus:ring-brand-500 shadow-sm',
-        'secondary' => 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 focus:ring-gray-400',
+        'secondary' => 'bg-surface-raised text-app-primary border border-app hover:bg-surface-hover focus:ring-gray-400',
         'danger' => 'bg-red-600 text-white hover:bg-red-700 focus:ring-red-500 shadow-sm',
-        'ghost' => 'text-gray-600 hover:bg-gray-100 focus:ring-gray-400',
-        'outline' => 'bg-transparent text-brand-600 border border-brand-600 hover:bg-brand-50 focus:ring-brand-500',
+        'ghost' => 'text-app-secondary hover:bg-surface-hover hover:text-app-primary focus:ring-gray-400',
+        'outline' => 'bg-transparent text-brand-600 border border-brand-600 hover:bg-brand-50 focus:ring-brand-500 dark:text-brand-400 dark:border-brand-500 dark:hover:bg-brand-500/10',
     ];
 
     $sizes = [
@@ -20,7 +20,7 @@
         'lg' => 'px-5 py-2.5 text-base',
     ];
 
-    $classes = 'inline-flex items-center justify-center gap-2 font-medium rounded-lg transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none '
+    $classes = 'inline-flex items-center justify-center gap-2 font-medium rounded-lg transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[var(--canvas)] disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none '
         .($variants[$variant] ?? $variants['primary']).' '
         .($sizes[$size] ?? $sizes['md']);
 @endphp
