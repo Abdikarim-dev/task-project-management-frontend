@@ -1,9 +1,14 @@
 @props([
     'striped' => false,
+    'flush' => false,
 ])
 
-<div {{ $attributes->merge(['class' => 'overflow-hidden rounded-xl border border-app bg-surface shadow-sm']) }}>
-    <div class="overflow-x-auto">
+<div {{ $attributes->class([
+    'min-w-0',
+    'overflow-hidden' => ! $flush,
+    'rounded-xl border border-app bg-surface shadow-sm' => ! $flush,
+]) }}>
+    <div class="overflow-x-auto scrollbar-thin">
         <table class="min-w-full divide-y divide-[var(--border)]">
             @if (isset($header))
                 <thead class="bg-surface-hover">

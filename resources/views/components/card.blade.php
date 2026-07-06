@@ -4,7 +4,7 @@
 
 <div {{ $attributes->merge(['class' => 'rounded-xl border border-app bg-surface shadow-sm'.($padding ? ' p-6' : '')]) }}>
     @if (isset($header))
-        <div class="mb-4 flex items-center justify-between border-b border-app-subtle pb-4{{ $padding ? '' : ' px-6 pt-6' }}">
+        <div class="mb-4 flex flex-col gap-1 border-b border-app-subtle pb-4{{ $padding ? '' : ' px-6 pt-6' }}">
             {{ $header }}
         </div>
     @endif
