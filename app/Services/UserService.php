@@ -44,6 +44,46 @@ class UserService
     }
 
     /**
+     * @param  array<string, mixed>  $data
+     * @return array<string, mixed>
+     */
+    public function create(array $data): array
+    {
+        $response = $this->api->post('users', $data);
+
+        return $response['data'];
+    }
+
+    /**
+     * @param  array<string, mixed>  $data
+     * @return array<string, mixed>
+     */
+    public function update(int $id, array $data): array
+    {
+        $response = $this->api->put("users/{$id}", $data);
+
+        return $response['data'];
+    }
+
+    public function suspend(int $id): array
+    {
+        $response = $this->api->patch("users/{$id}/suspend");
+
+        return $response['data'];
+    }
+
+    /**
+     * @param  array<string, mixed>  $data
+     * @return array<string, mixed>
+     */
+    public function updateProfile(array $data): array
+    {
+        $response = $this->api->patch('auth/profile', $data);
+
+        return $response['data'];
+    }
+
+    /**
      * @return list<array<string, mixed>>
      */
     public function staffOptions(): array
@@ -51,7 +91,10 @@ class UserService
         try {
             $response = $this->api->get('users', ['role' => 'staff', 'per_page' => 100]);
 
-            return $response['data']['items'] ?? [];
+            return collect($response['data']['items'] ?? [])
+                ->reject(fn (array $user) => $user['is_suspended'] ?? false)
+                ->values()
+                ->all();
         } catch (ApiException) {
             return [];
         }
