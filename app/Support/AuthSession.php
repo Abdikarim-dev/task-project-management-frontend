@@ -42,4 +42,9 @@ class AuthSession
     {
         session()->forget([self::TOKEN_KEY, self::USER_KEY]);
     }
+
+    public static function updateUser(array $user): void
+    {
+        session([self::USER_KEY => $user]);
+    }
 }

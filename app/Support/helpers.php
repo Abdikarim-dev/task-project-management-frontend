@@ -22,3 +22,12 @@ if (! function_exists('auth_is_admin')) {
         return AuthSession::isAdmin();
     }
 }
+
+if (! function_exists('user_theme')) {
+    function user_theme(): string
+    {
+        $theme = auth_user()['theme_preference'] ?? 'light';
+
+        return in_array($theme, ['light', 'dark'], true) ? $theme : 'light';
+    }
+}

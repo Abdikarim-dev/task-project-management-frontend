@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
@@ -19,10 +20,15 @@ Route::middleware('auth.session')->group(function (): void {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::patch('/profile/theme', [ProfileController::class, 'updateTheme'])->name('profile.theme');
+
     Route::middleware('admin')->group(function (): void {
         Route::resource('projects', ProjectController::class);
         Route::resource('tasks', TaskController::class)->except(['show']);
-        Route::resource('users', UserController::class)->only(['index', 'show']);
+        Route::resource('users', UserController::class)->only(['index', 'create', 'store', 'show']);
+        Route::patch('/users/{user}/suspend', [UserController::class, 'suspend'])->name('users.suspend');
     });
 
     Route::get('/tasks/{task}', [TaskController::class, 'show'])
