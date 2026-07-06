@@ -1,19 +1,5 @@
 # Taskify UI Screenshots — Detailed Reference
-
-All screenshots live under [`docs/screenshots/`](screenshots/). Paths below are relative to the `client/` folder.
-
-Each entry documents: **file path**, **route**, **role**, **layout regions**, **visible data**, and **interactive behaviour**.
-
 ---
-
-## Global chrome (all authenticated screens)
-
-| Region | Description |
-|--------|-------------|
-| **Sidebar** | Fixed left panel — Taskify logo, MAIN NAVIGATION links (role-dependent), signed-in user card, Sign out |
-| **Top bar** | Global search input, theme toggle (sun/moon), user avatar initials |
-| **Footer** | `© 2026 Taskify. All rights reserved.` |
-| **Theme** | Light or dark via user `theme_preference` (not system theme). Toggle persists via `PATCH /profile/theme` |
 
 **Admin navigation:** Dashboard · Projects · Tasks · Users · Profile  
 **Staff navigation:** Dashboard · My Tasks · Profile
@@ -28,7 +14,6 @@ Each entry documents: **file path**, **route**, **role**, **layout regions**, **
 
 | | |
 |---|---|
-| **File** | `docs/screenshots/dashboard/admin/dashboard-light-mode.png` |
 | **Route** | `GET /dashboard` |
 | **Role** | Admin — Hassan Abdi (`admin@example.com`) |
 
@@ -36,42 +21,14 @@ Each entry documents: **file path**, **route**, **role**, **layout regions**, **
 - Green success banner: *"Welcome back, Hassan Abdi!"* (dismissible)
 - Title: **Dashboard** — subtitle *"Overview of your projects and tasks"*
 
-**Stat cards (4-column grid)**
-
-| Card | Value | Subtext |
-|------|-------|---------|
-| Total Projects | 5 | 2 active |
-| Active Tasks | 21 | 30 total tasks |
-| Completed Tasks | 9 | 30% completion rate |
-| Overdue Tasks | 4 | Past due date |
-
-**Charts**
-- **Tasks by Status** — donut: To Do (grey), In Progress (blue), Completed (green)
-- **Projects by Status** — donut: Planning (purple), Active (blue), Completed (green), On Hold (orange)
-
-**Quick Actions**
-- Primary: `+ Create Project`, `+ Create Task`
-- Links: View All Projects, View All Tasks
-
-**Recent Activity** — feed of staff actions on Somali-themed tasks, e.g. *"completed Gather requirements from Mogadishu port stakeholders"*, *"started working on Integrate Hormuud EVC Plus payment callback"*, with relative timestamps and status badges.
-
-**Tables**
-- **Recent Tasks** — Title + Status columns (Mogadishu port, Hormuud EVC, SOS currency, Berbera corridor tasks)
-- **Recent Projects** — Project + Client (Mogadishu Port Digital Platform, Somali Mobile Money Gateway, etc.)
-
----
-
 ### Admin — Dark mode
 
 ![Admin dashboard (dark)](../docs/screenshots/dashboard/admin/dashboard-dark-mode.png)
 
 | | |
 |---|---|
-| **File** | `docs/screenshots/dashboard/admin/dashboard-dark-mode.png` |
 | **Route** | `GET /dashboard` |
 | **Role** | Admin |
-
-Identical layout and data to light mode. Dark theme uses semantic tokens (`--canvas` `#0b0e14`, `--surface`, `--text-primary`). Moon icon in top bar indicates dark mode is active; preference stored on the user record.
 
 ---
 
@@ -81,7 +38,6 @@ Identical layout and data to light mode. Dark theme uses semantic tokens (`--can
 
 | | |
 |---|---|
-| **File** | `docs/screenshots/dashboard/staff/stuff-dashboard.png` |
 | **Route** | `GET /dashboard` |
 | **Role** | Staff — Amina Mohamed (`amina@example.com`) |
 
@@ -228,20 +184,6 @@ Sample titles: *Gather requirements from Mogadishu port stakeholders*, *Integrat
 | **File** | `docs/screenshots/tasks/admin/create task.png` |
 | **Route** | `GET /tasks/create` · `POST /tasks` |
 
-**Breadcrumb** — Tasks › Create Task
-
-| Field | Example |
-|-------|---------|
-| Title * | Gather requirements for the project |
-| Project * | Zoobe Shop |
-| Assigned User | Amina Mohamed (filtered to project team) |
-| Priority * | Medium |
-| Status * | To Do |
-| Due Date | 07/08/2026 |
-| Description | (optional) |
-
-Helper text: *"Only staff assigned to the selected project can be chosen."* Assignee dropdown updates when project changes (Alpine.js).
-
 ---
 
 ### Edit task
@@ -342,71 +284,5 @@ Each card shows avatar initials, *Member since Jul 6, 2026*. Admin accounts cann
 
 | | |
 |---|---|
-| **File** | `docs/screenshots/users/each-user-data-preview-admin.png` |
 | **Route** | `GET /users/{id}` |
 | **Example** | Amina Mohamed (`amina@example.com`) |
-
-**Breadcrumb** — Users › Amina Mohamed
-
-**Header actions** — Back to Users · Suspend User (red)
-
-**Stat cards**
-
-| Assigned Tasks | Projects | Status |
-|----------------|----------|--------|
-| 11 | 5 worked on | Active (Staff) |
-
-**Charts**
-- **Tasks by Status** — To Do / In Progress / Completed donut
-- **Projects by Status** — Planning / Active / Completed / On Hold donut
-
-**Profile card** — avatar AM, name, email, Staff badge, Job Title (*Software Engineer*), Joined (*July 6, 2026*).
-
-**Projects table** (5 rows)
-
-| Project | Client | Status | Due Date |
-|---------|--------|--------|----------|
-| Somali Mobile Money Gateway | Salaam Somali Bank | Planning | Jan 6, 2027 |
-| Diaspora Remittance Portal | Dahabshiil | Active | Aug 6, 2026 |
-| Berbera Corridor Logistics Hub | Somaliland Trade Commission | Completed | Jun 29, 2026 |
-| National Livestock Export System | Ministry of Livestock — Federal Republic of Somalia | On Hold | Oct 6, 2026 |
-| Zoobe Shop | Al Huda | Planning | Aug 20, 2026 |
-
----
-
-## Profile (signed-in user)
-
-No screenshot file was provided under `docs/screenshots/profile/`. Behaviour on `GET /profile`:
-
-| Element | Behaviour |
-|---------|-----------|
-| Layout | Centred card with brand gradient header |
-| Avatar | Large initials ring |
-| Role badge | Admin or Staff |
-| Full Name | Read-only |
-| Email | Read-only |
-| Appearance | Light / Dark toggle buttons — saves immediately via `PATCH /profile/theme` |
-
-Accessible from sidebar **Profile** link for all roles.
-
----
-
-## Screenshot index
-
-| # | Section | File |
-|---|---------|------|
-| 1 | Dashboard — Admin light | `docs/screenshots/dashboard/admin/dashboard-light-mode.png` |
-| 2 | Dashboard — Admin dark | `docs/screenshots/dashboard/admin/dashboard-dark-mode.png` |
-| 3 | Dashboard — Staff | `docs/screenshots/dashboard/staff/stuff-dashboard.png` |
-| 4 | Projects — List light | `docs/screenshots/projects/view-projects/projects-lightmode.png` |
-| 5 | Projects — List dark | `docs/screenshots/projects/view-projects/projects-darkmode.png` |
-| 6 | Projects — Create | `docs/screenshots/projects/new-project/create-project.png` |
-| 7 | Projects — View | `docs/screenshots/projects/view-project/view-project.png` |
-| 8 | Tasks — Admin list | `docs/screenshots/tasks/admin/tasks.png` |
-| 9 | Tasks — Create | `docs/screenshots/tasks/admin/create task.png` |
-| 10 | Tasks — Edit | `docs/screenshots/tasks/admin/edit-task.png` |
-| 11 | Tasks — View (admin) | `docs/screenshots/tasks/admin/view-task.png` |
-| 12 | Tasks — My Tasks (staff) | `docs/screenshots/tasks/staff/view-tasks.png` |
-| 13 | Tasks — View (staff) | `docs/screenshots/tasks/staff/view-task.png` |
-| 14 | Users — Grid | `docs/screenshots/users/view-users.png` |
-| 15 | Users — Profile | `docs/screenshots/users/each-user-data-preview-admin.png` |
