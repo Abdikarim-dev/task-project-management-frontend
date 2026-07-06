@@ -55,14 +55,18 @@
                                 </x-slot:trigger>
                                 <x-dropdown-item :href="route('projects.show', $project['id'])">View</x-dropdown-item>
                                 <x-dropdown-item :href="route('projects.edit', $project['id'])">Edit</x-dropdown-item>
-                                <button type="button" class="flex w-full items-center gap-2 px-4 py-2 text-sm text-red-600 hover:bg-red-50" x-on:click="$dispatch('open-modal', 'delete-project-{{ $project['id'] }}')">Delete</button>
+                                @if ($project['can_delete'] ?? (($project['tasks_count'] ?? 0) === 0))
+                                    <button type="button" class="flex w-full items-center gap-2 px-4 py-2 text-sm text-red-600 hover:bg-red-50 dark:hover:bg-red-500/10" x-on:click="$dispatch('open-modal', 'delete-project-{{ $project['id'] }}')">Delete</button>
+                                    <x-delete-confirmation-modal
+                                        name="delete-project-{{ $project['id'] }}"
+                                        title="Delete project?"
+                                        message="Delete this project? This cannot be undone."
+                                        :action="route('projects.destroy', $project['id'])"
+                                    />
+                                @else
+                                    <span class="block px-4 py-2 text-xs text-app-muted">Delete unavailable (has tasks)</span>
+                                @endif
                             </x-dropdown>
-                            <x-delete-confirmation-modal
-                                name="delete-project-{{ $project['id'] }}"
-                                title="Delete project?"
-                                :message="'Delete \"'.$project['name'].'\"? This cannot be undone.'"
-                                :action="route('projects.destroy', $project['id'])"
-                            />
                         </x-table-cell>
                     </x-table-row>
                 @endforeach

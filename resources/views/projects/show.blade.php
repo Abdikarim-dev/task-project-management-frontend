@@ -10,15 +10,21 @@
         </x-slot:breadcrumb>
         <x-slot:actions>
             <x-button :href="route('projects.edit', $project['id'])" variant="secondary">Edit</x-button>
-            <x-button type="button" variant="danger" x-on:click="$dispatch('open-modal', 'delete-project')">Delete</x-button>
+            @if ($project['can_delete'] ?? (($project['tasks_count'] ?? count($project['tasks'] ?? [])) === 0))
+                <x-button type="button" variant="danger" x-on:click="$dispatch('open-modal', 'delete-project')">Delete</x-button>
+            @else
+                <span class="text-sm text-app-muted">Remove all tasks before deleting this project.</span>
+            @endif
         </x-slot:actions>
     </x-page-header>
 
+    @if ($project['can_delete'] ?? (($project['tasks_count'] ?? count($project['tasks'] ?? [])) === 0))
     <x-delete-confirmation-modal
         name="delete-project"
         :action="route('projects.destroy', $project['id'])"
-        :message="'Delete \"'.$project['name'].'\"? This cannot be undone.'"
+        message="Delete this project? This cannot be undone."
     />
+    @endif
 
     <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
         <x-card class="lg:col-span-2">

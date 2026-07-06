@@ -49,7 +49,6 @@ class TaskController extends Controller
     {
         return view('tasks.create', [
             'projects' => $this->taskService->projectOptions(),
-            'assignees' => $this->taskService->assigneeOptions(),
             'statuses' => config('taskify.task_statuses'),
             'priorities' => config('taskify.task_priorities'),
         ]);
@@ -104,7 +103,6 @@ class TaskController extends Controller
         return view('tasks.edit', [
             'task' => $taskData,
             'projects' => $this->taskService->projectOptions(),
-            'assignees' => $this->taskService->assigneeOptions(),
             'statuses' => config('taskify.task_statuses'),
             'priorities' => config('taskify.task_priorities'),
         ]);
