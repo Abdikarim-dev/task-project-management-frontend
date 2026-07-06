@@ -3,11 +3,12 @@
 namespace App\Services;
 
 use App\Services\Api\ApiClient;
+use App\Services\Api\ApiException;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use App\Support\ApiPaginator;
 
-class ProjectService
+class UserService
 {
     public function __construct(
         private readonly ApiClient $api
@@ -19,10 +20,10 @@ class ProjectService
             'per_page' => $request->integer('per_page', 15),
             'page' => $request->integer('page', 1),
             'search' => $request->string('search')->toString() ?: null,
-            'status' => $request->string('status')->toString() ?: null,
+            'role' => $request->string('role')->toString() ?: null,
         ]);
 
-        $response = $this->api->get('projects', $query);
+        $response = $this->api->get('users', $query);
         $payload = $response['data'];
 
         return ApiPaginator::make(
@@ -37,36 +38,9 @@ class ProjectService
      */
     public function find(int $id): array
     {
-        $response = $this->api->get("projects/{$id}");
+        $response = $this->api->get("users/{$id}");
 
         return $response['data'];
-    }
-
-    /**
-     * @param  array<string, mixed>  $data
-     * @return array<string, mixed>
-     */
-    public function create(array $data): array
-    {
-        $response = $this->api->post('projects', $data);
-
-        return $response['data'];
-    }
-
-    /**
-     * @param  array<string, mixed>  $data
-     * @return array<string, mixed>
-     */
-    public function update(int $id, array $data): array
-    {
-        $response = $this->api->put("projects/{$id}", $data);
-
-        return $response['data'];
-    }
-
-    public function delete(int $id): void
-    {
-        $this->api->delete("projects/{$id}");
     }
 
     /**
@@ -74,6 +48,12 @@ class ProjectService
      */
     public function staffOptions(): array
     {
-        return app(UserService::class)->staffOptions();
+        try {
+            $response = $this->api->get('users', ['role' => 'staff', 'per_page' => 100]);
+
+            return $response['data']['items'] ?? [];
+        } catch (ApiException) {
+            return [];
+        }
     }
 }

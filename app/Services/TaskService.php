@@ -97,13 +97,6 @@ class TaskService
      */
     public function assigneeOptions(): array
     {
-        $projects = $this->projectOptions();
-
-        return collect($projects)
-            ->flatMap(fn (array $project) => $project['team_members'] ?? [])
-            ->unique('id')
-            ->sortBy('name')
-            ->values()
-            ->all();
+        return app(UserService::class)->staffOptions();
     }
 }
