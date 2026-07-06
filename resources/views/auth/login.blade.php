@@ -81,7 +81,7 @@
         </div>
 
         <p class="mt-6 text-center text-xs text-gray-400">
-            Demo: admin@example.com / password
+            Demo: admin@example.com / password · Staff: amina@example.com / password
         </p>
     </div>
 </x-layouts.guest>
