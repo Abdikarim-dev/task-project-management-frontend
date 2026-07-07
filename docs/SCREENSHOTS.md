@@ -15,7 +15,7 @@
 | | |
 |---|---|
 | **Route** | `GET /dashboard` |
-| **Role** | Admin — Hassan Abdi (`admin@example.com`) |
+| **Role** | Admin — Hassan Abdi (`admin@aleelo.org`) |
 
 **Page header**
 - Green success banner: *"Welcome back, Hassan Abdi!"* (dismissible)
@@ -39,7 +39,7 @@
 | | |
 |---|---|
 | **Route** | `GET /dashboard` |
-| **Role** | Staff — Amina Mohamed (`amina@example.com`) |
+| **Role** | Staff — Amina Mohamed (`staff@aleelo.org`) |
 
 **Sidebar** — only Dashboard, My Tasks, Profile (no Projects / Tasks / Users).
 
@@ -274,4 +274,4 @@ Read-only task details. Staff may **Update Status** only — no Edit or Delete b
 | | |
 |---|---|
 | **Route** | `GET /users/{id}` |
-| **Example** | Amina Mohamed (`amina@example.com`) |
+| **Example** | Amina Mohamed (`staff@aleelo.org`) |

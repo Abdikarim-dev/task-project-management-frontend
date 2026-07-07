@@ -22,39 +22,39 @@
 
     <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
         <x-card class="lg:col-span-2">
-            <h2 class="mb-4 text-base font-semibold text-gray-900">Task Details</h2>
+            <h2 class="mb-4 text-base font-semibold text-app-primary">Task Details</h2>
             <dl class="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div>
-                    <dt class="text-sm text-gray-500">Project</dt>
-                    <dd class="mt-1 text-sm font-medium text-gray-900">{{ $task['project']['name'] ?? '—' }}</dd>
+                    <dt class="text-sm text-app-secondary">Project</dt>
+                    <dd class="mt-1 text-sm font-medium text-app-primary">{{ $task['project']['name'] ?? '—' }}</dd>
                 </div>
                 <div>
-                    <dt class="text-sm text-gray-500">Assigned To</dt>
-                    <dd class="mt-1 text-sm font-medium text-gray-900">{{ $task['assignee']['name'] ?? 'Unassigned' }}</dd>
+                    <dt class="text-sm text-app-secondary">Assigned To</dt>
+                    <dd class="mt-1 text-sm font-medium text-app-primary">{{ $task['assignee']['name'] ?? 'Unassigned' }}</dd>
                 </div>
                 <div>
-                    <dt class="text-sm text-gray-500">Priority</dt>
+                    <dt class="text-sm text-app-secondary">Priority</dt>
                     <dd class="mt-1"><x-priority-badge :priority="$task['priority']" /></dd>
                 </div>
                 <div>
-                    <dt class="text-sm text-gray-500">Status</dt>
+                    <dt class="text-sm text-app-secondary">Status</dt>
                     <dd class="mt-1"><x-status-badge :status="$task['status']" /></dd>
                 </div>
                 <div>
-                    <dt class="text-sm text-gray-500">Due Date</dt>
-                    <dd class="mt-1 text-sm font-medium text-gray-900">{{ $task['due_date'] ? Carbon::parse($task['due_date'])->format('M j, Y') : '—' }}</dd>
+                    <dt class="text-sm text-app-secondary">Due Date</dt>
+                    <dd class="mt-1 text-sm font-medium text-app-primary">{{ $task['due_date'] ? Carbon::parse($task['due_date'])->format('M j, Y') : '—' }}</dd>
                 </div>
             </dl>
             @if ($task['description'])
-                <div class="mt-6 border-t border-gray-100 pt-6">
-                    <h3 class="text-sm font-medium text-gray-500">Description</h3>
-                    <p class="mt-2 text-sm text-gray-700">{{ $task['description'] }}</p>
+                <div class="mt-6 border-t border-app-subtle pt-6">
+                    <h3 class="text-sm font-medium text-app-secondary">Description</h3>
+                    <p class="mt-2 text-sm leading-relaxed text-app-secondary">{{ $task['description'] }}</p>
                 </div>
             @endif
         </x-card>
 
         <x-card>
-            <h2 class="mb-4 text-base font-semibold text-gray-900">Update Status</h2>
+            <h2 class="mb-4 text-base font-semibold text-app-primary">Update Status</h2>
             <form method="POST" action="{{ route('tasks.update-status', $task['id']) }}" class="space-y-4">
                 @csrf
                 @method('PATCH')

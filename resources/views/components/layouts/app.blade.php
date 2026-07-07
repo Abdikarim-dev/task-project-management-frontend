@@ -13,6 +13,11 @@
         theme: @js($initialTheme),
         init() {
             this.apply(this.theme);
+
+            if (window.storeTheme) {
+                window.storeTheme(this.theme);
+            }
+
             this.$watch('theme', value => this.apply(value));
         },
         apply(value) {
@@ -40,6 +45,7 @@
     <title>{{ $title ?? config('app.name', 'Taskify') }}</title>
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=inter:400,500,600,700" rel="stylesheet">
+    <x-theme-script :server-theme="$initialTheme" />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="h-full font-sans">

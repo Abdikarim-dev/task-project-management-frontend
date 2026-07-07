@@ -47,11 +47,11 @@
             x-transition:leave="ease-in duration-150"
             x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
             x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-            {{ $attributes->merge(['class' => 'relative w-full bg-white rounded-xl shadow-xl border border-gray-200 '.($maxWidthClasses[$maxWidth] ?? $maxWidthClasses['md'])]) }}
+            {{ $attributes->merge(['class' => 'relative w-full rounded-xl border border-app bg-surface shadow-xl '.($maxWidthClasses[$maxWidth] ?? $maxWidthClasses['md'])]) }}
         >
             @if ($title)
-                <div class="border-b border-gray-100 px-6 py-4">
-                    <h3 :id="$id('modal-title')" class="text-lg font-semibold text-gray-900">{{ $title }}</h3>
+                <div class="border-b border-app-subtle px-6 py-4">
+                    <h3 :id="$id('modal-title')" class="text-lg font-semibold text-app-primary">{{ $title }}</h3>
                 </div>
             @endif
 

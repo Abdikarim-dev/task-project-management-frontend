@@ -9,7 +9,7 @@
 ])
 
 <x-modal :name="$name" :title="$title" maxWidth="sm">
-    <p class="text-sm text-gray-600">{{ $message }}</p>
+    <p class="text-sm text-app-secondary">{{ $message }}</p>
 
     <div class="mt-6 flex items-center justify-end gap-3">
         <x-button type="button" variant="secondary" x-on:click="$dispatch('close-modal', '{{ $name }}')">

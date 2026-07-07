@@ -106,4 +106,12 @@ html.dark {
     .dark .scrollbar-thin {
         scrollbar-color: #374151 transparent;
     }
+
+    .auth-grid {
+        background-image:
+            linear-gradient(var(--border-subtle) 1px, transparent 1px),
+            linear-gradient(90deg, var(--border-subtle) 1px, transparent 1px);
+        background-size: 72px 72px;
+        mask-image: radial-gradient(ellipse 80% 70% at 50% 0%, black 20%, transparent 100%);
+    }
 }

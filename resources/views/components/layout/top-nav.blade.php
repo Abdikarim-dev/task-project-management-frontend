@@ -1,3 +1,16 @@
+@php
+    $searchRoute = auth_is_admin() ? route('tasks.index') : route('tasks.my');
+    $searchPlaceholder = auth_is_admin() ? 'Search tasks...' : 'Search my tasks...';
+
+    if (request()->routeIs('projects.*')) {
+        $searchRoute = route('projects.index');
+        $searchPlaceholder = 'Search projects...';
+    } elseif (request()->routeIs('users.*')) {
+        $searchRoute = route('users.index');
+        $searchPlaceholder = 'Search users...';
+    }
+@endphp
+
 <header class="sticky top-0 z-30 flex h-16 items-center gap-4 border-b border-app bg-surface px-4 sm:px-6">
     <button
         type="button"
@@ -11,7 +24,9 @@
     </button>
 
     <div class="hidden flex-1 sm:block sm:max-w-md">
-        <x-search-box placeholder="Search..." class="w-full" />
+        <form method="GET" action="{{ $searchRoute }}" class="w-full">
+            <x-search-box name="search" :value="request('search', '')" :placeholder="$searchPlaceholder" class="w-full" />
+        </form>
     </div>
 
     <div class="flex flex-1 items-center justify-end gap-2 sm:gap-3">

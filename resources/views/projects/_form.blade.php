@@ -34,20 +34,20 @@
 
             @if (count($staff))
                 <fieldset>
-                    <legend class="mb-3 text-sm font-medium text-gray-700">Assign Team Members</legend>
+                    <legend class="mb-3 text-sm font-medium text-app-secondary">Assign Team Members</legend>
                     <div class="grid grid-cols-1 gap-2 sm:grid-cols-2">
                         @php $selected = old('team_member_ids', collect($project['team_members'] ?? [])->pluck('id')->all()); @endphp
                         @foreach ($staff as $member)
-                            <label class="flex items-center gap-2 rounded-lg border border-gray-200 px-3 py-2 hover:bg-gray-50">
-                                <input type="checkbox" name="team_member_ids[]" value="{{ $member['id'] }}" @checked(in_array($member['id'], $selected)) class="rounded border-gray-300 text-brand-600 focus:ring-brand-500" />
-                                <span class="text-sm text-gray-700">{{ $member['name'] }}</span>
+                            <label class="flex items-center gap-2 rounded-lg border border-app bg-surface-input px-3 py-2 transition-colors hover:bg-surface-hover">
+                                <input type="checkbox" name="team_member_ids[]" value="{{ $member['id'] }}" @checked(in_array($member['id'], $selected)) class="rounded border-app bg-surface-input text-brand-600 focus:ring-brand-500 focus:ring-offset-[var(--surface)]" />
+                                <span class="text-sm text-app-primary">{{ $member['name'] }}</span>
                             </label>
                         @endforeach
                     </div>
                 </fieldset>
             @endif
 
-            <div class="flex items-center gap-3 border-t border-gray-100 pt-6">
+            <div class="flex items-center gap-3 border-t border-app-subtle pt-6">
                 <x-button type="submit" variant="primary">{{ $submitLabel }}</x-button>
                 <x-button href="{{ route('projects.index') }}" variant="secondary">Cancel</x-button>
             </div>

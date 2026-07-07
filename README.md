@@ -54,8 +54,8 @@ composer dev
 
 | Role  | Email               | Password |
 |-------|---------------------|----------|
-| Admin | admin@example.com (Hassan Abdi) | password |
-| Staff | amina@example.com (Amina Mohamed) | password |
+| Admin | admin@aleelo.org (Hassan Abdi) | password |
+| Staff | staff@aleelo.org (Amina Mohamed) | password |
 
 ## Architecture
 
@@ -65,6 +65,8 @@ The frontend acts as a **session-based BFF** (Backend for Frontend):
 - `ApiClient` service communicates with the backend API
 - Sanctum token stored in session after login
 - Role-based navigation (Admin vs Staff)
+- Functional appbar search that targets the current area (projects, tasks, users, or my tasks)
+- **No local database** — all data lives in the backend API (`server/`)
 
 ```
 Browser → Web Routes → Controllers → ApiClient → Backend API
@@ -98,3 +100,4 @@ The app ships with **15 reference screenshots** under [`docs/screenshots/`](docs
 | Dashboard (admin, light) | My Tasks (staff, dark) | User profile (admin view) |
 |--------------------------|------------------------|---------------------------|
 | ![Dashboard](docs/screenshots/dashboard/admin/dashboard-light-mode.png) | ![My Tasks](docs/screenshots/tasks/staff/view-tasks.png) | ![User profile](docs/screenshots/users/each-user-data-preview-admin.png) |
+
